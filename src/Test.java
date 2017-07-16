@@ -5,20 +5,33 @@ import java.io.IOException;
 
 
 public class Test {
-
+	
+	public static String uploadPath = ""; 
 	public static void main(String[] args) throws InterruptedException {
+		
+		boolean isTrue = true; 
+		String uPath="";
 		String path = "d:/test";
 		String filePath = "d:/test/testA.batch";
 		Thread listener = new Thread(new FileListenerThread(path,filePath));
 		listener.start();
+		while(isTrue){
+			System.err.println(isTrue);
+			if(!uploadPath.equals("")){
+				uPath = uploadPath;
+				isTrue=false;
+			}
+		}
+		System.out.println(uPath);
 		
+
 		//listener.interrupt(); 
 		//listener.
 		//listener.exit = true; // 终止线程thread 
 		//listener.join(); 
 		
 		//listener.join(); 
-	        System.out.println("线程已经退出!"); 
+	        
 		
 	}
 }
@@ -84,6 +97,7 @@ class FileListenerThread implements Runnable {
 			//System.out.println(size);
 			if(s >0){
 				stop = false;
+				Test.uploadPath="http://www.baidu.com";
 			}
 		}
 	}
